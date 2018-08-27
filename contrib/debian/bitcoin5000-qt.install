@@ -1,0 +1,6 @@
+usr/local/bin/bitcoin5000-qt usr/bin
+share/pixmaps/bitcoin500032.xpm usr/share/pixmaps
+share/pixmaps/bitcoin500016.xpm usr/share/pixmaps
+share/pixmaps/bitcoin5000128.png usr/share/pixmaps
+debian/bitcoin5000-qt.desktop usr/share/applications
+debian/bitcoin5000-qt.protocol usr/share/kde4/services/

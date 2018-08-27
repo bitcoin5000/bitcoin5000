@@ -1,0 +1,92 @@
+#!/sbin/openrc-run
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/bitcoin5000/.bitcoin5000" ]; then
+	BITCOIN5000D_DEFAULT_DATADIR="/var/lib/bitcoin5000/.bitcoin5000"
+else
+	BITCOIN5000D_DEFAULT_DATADIR="/var/lib/bitcoin5000d"
+fi
+
+BITCOIN5000D_CONFIGFILE=${BITCOIN5000D_CONFIGFILE:-/etc/bitcoin5000/bitcoin5000.conf}
+BITCOIN5000D_PIDDIR=${BITCOIN5000D_PIDDIR:-/var/run/bitcoin5000d}
+BITCOIN5000D_PIDFILE=${BITCOIN5000D_PIDFILE:-${BITCOIN5000D_PIDDIR}/bitcoin5000d.pid}
+BITCOIN5000D_DATADIR=${BITCOIN5000D_DATADIR:-${BITCOIN5000D_DEFAULT_DATADIR}}
+BITCOIN5000D_USER=${BITCOIN5000D_USER:-${BITCOIN5000_USER:-bitcoin5000}}
+BITCOIN5000D_GROUP=${BITCOIN5000D_GROUP:-bitcoin5000}
+BITCOIN5000D_BIN=${BITCOIN5000D_BIN:-/usr/bin/bitcoin5000d}
+BITCOIN5000D_NICE=${BITCOIN5000D_NICE:-${NICELEVEL:-0}}
+BITCOIN5000D_OPTS="${BITCOIN5000D_OPTS:-${BITCOIN5000_OPTS}}"
+
+name="Bitcoin5000 Core Daemon"
+description="Bitcoin5000 cryptocurrency P2P network daemon"
+
+command="/usr/bin/bitcoin5000d"
+command_args="-pid=\"${BITCOIN5000D_PIDFILE}\" \
+		-conf=\"${BITCOIN5000D_CONFIGFILE}\" \
+		-datadir=\"${BITCOIN5000D_DATADIR}\" \
+		-daemon \
+		${BITCOIN5000D_OPTS}"
+
+required_files="${BITCOIN5000D_CONFIGFILE}"
+start_stop_daemon_args="-u ${BITCOIN5000D_USER} \
+			-N ${BITCOIN5000D_NICE} -w 2000"
+pidfile="${BITCOIN5000D_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${BITCOIN5000D_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${BITCOIN5000D_USER}:${BITCOIN5000D_GROUP}" \
+	"${BITCOIN5000D_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${BITCOIN5000D_USER}:${BITCOIN5000D_GROUP}" \
+	"${BITCOIN5000D_PIDDIR}"
+
+	checkpath -f \
+	-o ${BITCOIN5000D_USER}:${BITCOIN5000D_GROUP} \
+	-m 0660 \
+	${BITCOIN5000D_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${BITCOIN5000D_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run bitcoin5000d."
+		eerror "The setting must appear in ${BITCOIN5000D_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following"
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is also recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"Bitcoin5000 Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

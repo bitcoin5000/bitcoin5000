@@ -1,0 +1,33 @@
+# /etc/conf.d/bitcoin5000d: config file for /etc/init.d/bitcoin5000d
+
+# Config file location
+#BITCOIN5000D_CONFIGFILE="/etc/bitcoin5000/bitcoin5000.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIN5000D_USER)
+#BITCOIN5000D_PIDDIR="/var/run/bitcoin5000d"
+
+# What filename to give the pidfile
+#BITCOIN5000D_PIDFILE="${BITCOIN5000D_PIDDIR}/bitcoin5000d.pid"
+
+# Where to write bitcoin5000d data (be mindful that the blockchain is large)
+#BITCOIN5000D_DATADIR="/var/lib/bitcoin5000d"
+
+# User and group to own bitcoin5000d process
+#BITCOIN5000D_USER="bitcoin5000"
+#BITCOIN5000D_GROUP="bitcoin5000"
+
+# Path to bitcoin5000d executable
+#BITCOIN5000D_BIN="/usr/bin/bitcoin5000d"
+
+# Nice value to run bitcoin5000d under
+#BITCOIN5000D_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#BITCOIN5000D_OPTS=""
+
+# The timeout in seconds OpenRC will wait for bitcoin5000d to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+BITCOIN5000D_SIGTERM_TIMEOUT=60

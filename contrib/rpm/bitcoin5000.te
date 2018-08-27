@@ -1,0 +1,81 @@
+policy_module(bitcoin5000, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type bitcoin5000_t;
+type bitcoin5000_exec_t;
+init_daemon_domain(bitcoin5000_t, bitcoin5000_exec_t)
+
+permissive bitcoin5000_t;
+
+type bitcoin5000_initrc_exec_t;
+init_script_file(bitcoin5000_initrc_exec_t)
+
+type bitcoin5000_conf_t;
+files_type(bitcoin5000_conf_t)
+
+type bitcoin5000_var_lib_t;
+files_type(bitcoin5000_var_lib_t)
+
+type bitcoin5000_var_run_t;
+files_type(bitcoin5000_var_run_t)
+
+type bitcoin5000_port_t;
+corenet_port(bitcoin5000_port_t)
+
+########################################
+#
+# bitcoin5000 local policy
+#
+allow bitcoin5000_t self:process { fork };
+
+allow bitcoin5000_t self:fifo_file rw_fifo_file_perms;
+allow bitcoin5000_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(bitcoin5000_t, bitcoin5000_conf_t, bitcoin5000_conf_t)
+manage_files_pattern(bitcoin5000_t, bitcoin5000_conf_t, bitcoin5000_conf_t)
+
+manage_dirs_pattern(bitcoin5000_t, bitcoin5000_var_lib_t, bitcoin5000_var_lib_t)
+manage_files_pattern(bitcoin5000_t, bitcoin5000_var_lib_t, bitcoin5000_var_lib_t)
+files_var_lib_filetrans(bitcoin5000_t, bitcoin5000_var_lib_t, { dir file })
+
+manage_dirs_pattern(bitcoin5000_t, bitcoin5000_var_run_t, bitcoin5000_var_run_t)
+manage_files_pattern(bitcoin5000_t, bitcoin5000_var_run_t, bitcoin5000_var_run_t)
+
+sysnet_dns_name_resolve(bitcoin5000_t)
+corenet_all_recvfrom_unlabeled(bitcoin5000_t)
+
+allow bitcoin5000_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(bitcoin5000_t)
+corenet_tcp_sendrecv_generic_node(bitcoin5000_t)
+corenet_tcp_sendrecv_all_ports(bitcoin5000_t)
+corenet_tcp_bind_generic_node(bitcoin5000_t)
+
+gen_require(`
+    type bitcoin5000_port_t;
+')
+allow bitcoin5000_t bitcoin5000_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type bitcoin5000_port_t;
+')
+allow bitcoin5000_t bitcoin5000_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(bitcoin5000_t)
+
+files_read_etc_files(bitcoin5000_t)
+
+miscfiles_read_localization(bitcoin5000_t)
+
+sysnet_dns_name_resolve(bitcoin5000_t)
+
+allow bitcoin5000_t bitcoin5000_exec_t:file execute_no_trans;
+allow bitcoin5000_t self:process setsched;
+corecmd_exec_ls(bitcoin5000_t)
+corenet_tcp_connect_http_port(bitcoin5000_t)
+dev_read_urand(bitcoin5000_t)
+fs_getattr_xattr_fs(bitcoin5000_t)
+kernel_read_system_state(bitcoin5000_t)

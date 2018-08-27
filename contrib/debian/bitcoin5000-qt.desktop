@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Bitcoin5000 Core
+Comment=Connect to the Bitcoin5000 P2P Network
+Comment[de]=Verbinde mit dem Bitcoin5000 peer-to-peer Netzwerk
+Comment[fr]=Bitcoin5000, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Bitcoin5000, eşten eşe kriptografik sanal para birimi
+Exec=bitcoin5000-qt %u
+Terminal=false
+Type=Application
+Icon=bitcoin5000128
+MimeType=x-scheme-handler/bitcoin5000;
+Categories=Office;Finance;
