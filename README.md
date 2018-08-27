@@ -9,11 +9,17 @@ What is Bitcoin5000?
 see https://bitcoin5000.org/
 
 Fork Block: 225000
+
 Max Weight: 12000000
+
 Subsidy Amount: 50
+
 Subsidy Interval: 210000
+
 Proof of Work: sha256
+
 Full blockchain size = < 7 GB
+
 
 Bitcoin 5000 airdrop 9,289.82247387 BVK
 
