@@ -8,6 +8,32 @@ What is Bitcoin5000?
 
 see https://bitcoin5000.org/
 
+Fork Block: 225000
+Max Weight: 12000000
+Subsidy Amount: 50
+Subsidy Interval: 210000
+Proof of Work: sha256
+Full blockchain size = < 7 GB
+
+Bitcoin 5000 airdrop 9,289.82247387 BVK
+
+bitcoin5000 nodes:
+147.135.245.68
+
+mining pool:
+147.135.245.68
+username (bitcoin5000 adress)
+password: anything
+
+Bitcoin5000Core wallet download:
+
+windows binaries:
+https://github.com/bitcoin5000/bitcoin5000/blob/master/binaries/bitcoin5000-windows-setup-x86_64.exe
+OSX:
+https://github.com/bitcoin5000/bitcoin5000/blob/master/binaries/bitcoin5000-osx-bin-x86_64.dmg
+linux:
+https://github.com/bitcoin5000/bitcoin5000/blob/master/binaries/bitcoin5000-linux-bin-x86_64.tar.gz
+
 
 License
 -------
