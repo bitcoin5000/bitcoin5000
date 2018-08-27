@@ -8,6 +8,9 @@ What is Bitcoin5000?
 
 see https://bitcoin5000.org/
 
+Coin Name: Bitcoin 5000 (BVK)
+Bitcoin 5000 (BVK) fork
+
 Fork Block: 225000
 
 Max Block Weight: 12000000
