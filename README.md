@@ -35,8 +35,10 @@ Bitcoin5000Core wallet download:
 
 windows binaries:
 https://github.com/bitcoin5000/bitcoin5000/blob/master/binaries/bitcoin5000-windows-setup-x86_64.exe
+
 OSX:
 https://github.com/bitcoin5000/bitcoin5000/blob/master/binaries/bitcoin5000-osx-bin-x86_64.dmg
+
 linux:
 https://github.com/bitcoin5000/bitcoin5000/blob/master/binaries/bitcoin5000-linux-bin-x86_64.tar.gz
 
