@@ -10,13 +10,20 @@ see https://bitcoin5000.org/
 
 Fork Block: 225000
 
-Max Weight: 12000000
+Max Block Weight: 12000000
 
 Subsidy Amount: 50
 
 Subsidy Interval: 210000
 
 Proof of Work: sha256
+
+Max Block Weight: 12000000
+
+Prefixes: 5, K, 5
+
+premine = 0
+
 
 Full blockchain size = < 7 GB
 
