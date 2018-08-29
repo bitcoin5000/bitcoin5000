@@ -11,37 +11,28 @@ see https://bitcoin5000.org/
 Coin Name: Bitcoin 5000 (BVK)
 Bitcoin 5000 (BVK) fork
 
+Bitcoin 5000 (BVK) fork
+
 Fork Block: 225000
-
-Max Block Weight: 12000000
-
-Subsidy Amount: 50
-
-Subsidy Interval: 210000
-
 Proof of Work: sha256
-
 Max Block Weight: 12000000
-
 Prefixes: 5, K, 5
-
 premine = 0
-
-
 Full blockchain size = < 7 GB
+
 
 
 Bitcoin 5000 airdrop 9,289.82247387 BVK
 
 bitcoin5000 nodes:
-147.135.245.68
-
+146.0.77.107
 mining pool:
-147.135.245.68
+146.0.77.107 port 3032
 username (bitcoin5000 adress)
 password: anything
 
 Bitcoin5000Core wallet download:
+
 
 windows binaries:
 https://github.com/bitcoin5000/bitcoin5000/blob/master/binaries/bitcoin5000-windows-setup-x86_64.exe
