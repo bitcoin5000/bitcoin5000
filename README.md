@@ -22,7 +22,7 @@ Full blockchain size = < 7 GB
 
 
 
-Bitcoin 5000 airdrop 9,289.82247387 BVK
+Bitcoin 5000 airdrop 9,289 000 BVK
 
 bitcoin5000 nodes:
 146.0.77.107
