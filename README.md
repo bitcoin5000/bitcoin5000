@@ -9,7 +9,7 @@ Fork Block: 225000 Proof of Work: sha256 Max Block Weight: 12000000 Prefixes: 5,
 
 Bitcoin 5000 airdrop 9,289 000 BVK
 
-bitcoin5000 nodes: 146.0.77.107, http://5.39.221.56/
+bitcoin5000 nodes: 146.0.77.107, 5.39.221.56  (addnode 146.0.77.107 add) (addnode  5.39.221.56 add)
 mining pool: 146.0.77.107 port 3032 username <bitcoin5000 adress> password: anything
 
 Bitcoin5000Core wallet download:
