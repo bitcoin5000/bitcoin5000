@@ -3887,7 +3887,7 @@ void CWallet::GetKeyBirthTimes(
  *   the block time.
  *
  * For more information see CWalletTx::nTimeSmart,
- * https://bitcoin5000talk.org/?topic=54527, or
+ * https://bitcointalk.org/?topic=54527, or
  * https://github.com/bitcoin5000/bitcoin5000/pull/1393.
  */
 unsigned int CWallet::ComputeTimeSmart(const CWalletTx &wtx) const {
